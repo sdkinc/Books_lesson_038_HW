@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Book {
 
   private String name;
@@ -26,7 +28,22 @@ public class Book {
 
   @Override
   public String toString(){
-    return getName()+" from "+getAuthor();
+    return "'"+getName()+"'"+" from "+getAuthor();
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    if(this==obj){
+      return true;
+    }
+    if(!(obj instanceof Book book)){
+      return false;
+    }
+    return (this.getName().equals(book.getName()) && this.getAuthor().equals(book.getAuthor()));
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, author);
+  }
 }
